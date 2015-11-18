@@ -323,7 +323,7 @@ class Page extends Node {
                 ." AND (COALESCE(valid_until, '9999-12-31') = '9999-12-31' OR '".date('Y-m-d H:i:s')."' < valid_until)"
                 .' AND (status_id='.Page::STATUS_PUBLISHED
                 .($include_hidden ? ' OR status_id='.Page::STATUS_HIDDEN : '').') '
-                ."$where_string ORDER BY $order $limit_string $offset_string";
+                ."$where_string GROUP BY $order $limit_string $offset_string";
 
         $stmt = Record::getConnection()->prepare($sql);
 
